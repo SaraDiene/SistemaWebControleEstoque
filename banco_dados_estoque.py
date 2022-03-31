@@ -9,7 +9,7 @@ class BancoDados:
     def get_conexao(self):
         self.conexao = bd.connect(host = 'localhost',
                                 user = 'root',
-                                password = 'Admin@22',
+                                password = '########',
                                 database = 'db_estoque')
         return self.conexao
         
