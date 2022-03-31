@@ -1,0 +1,68 @@
+{%extends 'index.html'%}
+
+{%block content%}
+
+<h3>Cadastro de Usuários</h3>
+
+<form action="cadastro_usuario" method="POST">
+    <label for="">Nome</label>
+    <input type="text" name="nome" id="">
+
+    <label for="">CPF</label>
+    <input type="text" name="cpf" id="">
+
+    <label for="">Departamento</label>
+    <input type="text" name="depto" id="">
+
+    <label for="">Email</label>
+    <input type="email" name="email" id="">
+
+    <label for="">Senha</label>
+    <input type="password" name="password" id="">
+
+    <input type="submit" name="" id="" value="Registrar">
+
+    <label for="">Grupo Usuários</label>
+    
+    <select name="grupo" id="">
+        <option value="1">Administrador</option>
+        <option value="0">Usuário comum</option>
+    </select>
+
+    {{mensagem}}
+
+
+</form>
+    <table class = "table table-striped mx-auto">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Departamento</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for user in lista_usuario%}
+            <tr>
+                <td>{{user.usuario_nome}}</td>
+                <td>{{user.cpf}}</td>
+                <td>{{user.depto}}</td>
+                <td>{{user.email}}</td>
+
+                <td>
+                    <form  action="delete" method="POST">
+
+                        <input hidden type="text" value="{{user.usuario_nome}}" name="usuario_excluido">
+                        <input type="submit" value="Excluir" >
+
+                    </form>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+        
+    </table>
+
+
+{%endblock%}

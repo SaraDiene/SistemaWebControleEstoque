@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+{%extends 'index.html'%}
+
+{%block content%}
+
+
+    <div class="container">
+        <div class="container shadow px-5 py-3 bg-light">
+
+            <h1 class="text-center">Cadastro itens</h1>
+
+            <div class="row">
+                <form action='cadastro_produto' method='POST' class="form-group">
+                    
+                    <div class="col">
+
+                        <label class="form-label d-block">Categoria</label>
+                        <select name="id_categoria" class="select-form">
+                        
+                            <option>Selecione uma categoria</option>
+
+                            {%for categoria in lista%}
+
+                            <option value="{{categoria.get_id()}}">{{categoria.get_nome_categoria()}}</option>
+
+                            {% endfor %}
+                        </select>
+                    </div>
+            </div>
+
+            
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <label class="d-block">Nome Produto</label>
+                        <input type="text" name="nome_produto">
+
+                    </div>
+                    <div class="col-md-3">
+                        <label class="d-block">Quantidade</label>
+                        <input type="number" name="quantidade_produto"> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="d-block">Valor</label>
+                        <input type="text" name="valor_produto">
+                    </div>
+                
+                    <div class="col-md-3">
+                        <label class="d-block">Validade</label>
+                        <input type="date" name="validade_produto">
+                    </div>
+                </div>
+
+                <div>            
+                    
+                    <label class="d-block">Descrição</label>
+
+                
+                    <textarea name="descricao_produto" cols="30" rows="10"></textarea>
+                    
+                </div>
+
+                
+                        
+                <input type="submit" name="" id="" value = "Cadastrar" class="my-4 d-block btn btn-outline-dark bg-info">
+                
+            </form>
+
+        </div>
+
+        <h1 class="my-5">Produtos cadastrados</h1>
+
+        <form action="pesquisar_categorias" method="POST">
+            <label>Categoria</label>
+                <select name="id_categoria">
+                
+                    <option value="-1">Selecione uma categoria</option>
+
+                    {%for categoria in lista%}
+
+                    <option value="{{categoria.get_id()}}">{{categoria.get_nome_categoria()}}</option>
+
+                    {% endfor %}
+                </select>
+
+                <label>Nome Produto</label>
+
+                <input type="text" name="nome_produto">
+
+                <input type="submit"value="Pesquisar">
+            </form>
+        
+            <table class = "table table-striped table-dark mx-auto">
+                <thead>
+                    <tr>
+                        <th>ID Produto</th>
+                        <th>Nome Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor R$</th>
+                        <th>Validade</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for produto in lista_produto%}
+                    <tr>
+                        <td>{{ produto.id_produto }}</td>
+                        <td>{{ produto.nome_produto }}</td>
+                        <td>{{ produto.quantidade_produto }}</td>
+                        <td>{{ produto.valor_produto }}</td>
+                        <td>{{ produto.validade_produto }}</td>
+                        <td>{{ produto.descricao_produto }}</td>
+                        <td>{{ produto.categoria.get_nome_categoria() }}</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+    </div>
+
+{%endblock%}

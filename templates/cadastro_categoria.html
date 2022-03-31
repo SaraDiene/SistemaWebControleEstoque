@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{%extends 'index.html'%}
+
+{%block content%}
+    <h1>
+        Cadastro Categoria
+    </h1>
+
+    <form action="categoria" method="POST">
+        <label for="">Nome Categoria</label>
+        <input type="text" name="nome_categoria" id="">
+        <button type="submit" name="" id="">SALVAR</button>
+    </form>
+
+    {{resultado}}
+
+    <h1>Categorias Existentes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Código categorias
+                </th>
+                <th>
+                    Nome Categoria
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for categoria in lista%}
+            <tr>
+                <td>{{categoria.get_id()}}</td>
+                <td>{{categoria.get_nome_categoria()}}</td>
+            </tr>
+        </tbody>
+        {%endfor%}
+    </table>
+{%endblock%}
